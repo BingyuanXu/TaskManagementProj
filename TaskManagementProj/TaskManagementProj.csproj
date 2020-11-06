@@ -171,12 +171,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202011060007027_BasicModel.cs" />
     <Compile Include="Migrations\202011060007027_BasicModel.designer.cs">
       <DependentUpon>202011060007027_BasicModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011060038042_AddTitlefieldToTaskModel.cs" />
+    <Compile Include="Migrations\202011060038042_AddTitlefieldToTaskModel.designer.cs">
+      <DependentUpon>202011060038042_AddTitlefieldToTaskModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011060113148_WordtitleToTitle.cs" />
+    <Compile Include="Migrations\202011060113148_WordtitleToTitle.designer.cs">
+      <DependentUpon>202011060113148_WordtitleToTitle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -247,6 +256,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,6 +281,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011060007027_BasicModel.resx">
       <DependentUpon>202011060007027_BasicModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011060038042_AddTitlefieldToTaskModel.resx">
+      <DependentUpon>202011060038042_AddTitlefieldToTaskModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011060113148_WordtitleToTitle.resx">
+      <DependentUpon>202011060113148_WordtitleToTitle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,7 @@ namespace TaskManagementProj.Models
         public int Id { get; set; }
         public int ProjectId { get; set; }
         public Project Project { get; set; }
+        public string Title { get; set; }
         public string Detail { get; set; }
         public string FinishedComment { get; set; }
         [Range(0, 100)]
