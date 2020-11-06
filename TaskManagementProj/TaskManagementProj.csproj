@@ -174,14 +174,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011050726494_Initial.cs" />
-    <Compile Include="Migrations\202011050726494_Initial.Designer.cs">
-      <DependentUpon>202011050726494_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202011060007027_BasicModel.cs" />
+    <Compile Include="Migrations\202011060007027_BasicModel.designer.cs">
+      <DependentUpon>202011060007027_BasicModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectHelper.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\TaskHelper.cs" />
+    <Compile Include="Models\UrgentNote.cs" />
     <Compile Include="Models\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -260,8 +265,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011050726494_Initial.resx">
-      <DependentUpon>202011050726494_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011060007027_BasicModel.resx">
+      <DependentUpon>202011060007027_BasicModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
