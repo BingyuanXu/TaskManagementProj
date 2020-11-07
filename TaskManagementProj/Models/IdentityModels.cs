@@ -13,6 +13,7 @@ namespace TaskManagementProj.Models
         public ICollection<TaskModel> Tasks { get; set; }
         public ICollection<Project> Projects { get; set; }
         public ICollection<UrgentNote> UrgentNotes { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -28,10 +29,11 @@ namespace TaskManagementProj.Models
         public DbSet<TaskModel> Tasks { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<UrgentNote> UrgentNotes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("TMDB", throwIfV1Schema: false)
         {
         }
 

@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class BasicModel : IMigrationMetadata
+    public sealed partial class CreateModels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BasicModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateModels));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011060007027_BasicModel"; }
+            get { return "202011070513274_CreateModels"; }
         }
         
         string IMigrationMetadata.Source
