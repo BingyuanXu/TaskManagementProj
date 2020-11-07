@@ -11,6 +11,7 @@ namespace TaskManagementProj.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
+        public bool UnRead { get; set; } = true;
         [ForeignKey("Project")]
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }
