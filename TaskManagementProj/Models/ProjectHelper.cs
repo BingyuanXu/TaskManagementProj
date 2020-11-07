@@ -36,8 +36,21 @@ namespace TaskManagementProj.Models
             Project.Title = title;
             Project.Detail = detail;
             Project.UserId = userId;
-            Project.IsCompleted = isComplete;
             db.Entry(Project).State = EntityState.Modified;
+            db.SaveChanges();
+            db.Dispose();
+        }
+
+        public static void Finish(int id, bool isComplete)
+        {
+            Project Project = db.Projects.Find(id);
+            Project.IsCompleted = isComplete;
+            Notification notification = new Notification
+            {
+                Title = "Project finished!",
+                Detail = Project.Title + " has been completed!"
+            };
+            db.Notifications.Add(notification);
             db.SaveChanges();
             db.Dispose();
         }

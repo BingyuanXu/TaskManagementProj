@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class BasicModel : IMigrationMetadata
+    public sealed partial class ChangNotification : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BasicModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangNotification));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011060007027_BasicModel"; }
+            get { return "202011070547382_ChangNotification"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddTitlefieldToTaskModel : DbMigration
+    public partial class ChangNotification : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.TaskModels", "title", c => c.String());
+            AddColumn("dbo.Notifications", "UnRead", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.TaskModels", "title");
+            DropColumn("dbo.Notifications", "UnRead");
         }
     }
 }
