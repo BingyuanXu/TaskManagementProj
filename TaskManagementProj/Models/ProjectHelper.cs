@@ -50,6 +50,7 @@ namespace TaskManagementProj.Models
                 Title = "Project finished!",
                 Detail = Project.Title + " has been completed!"
             };
+            db.Notifications.Add(notification);
             db.SaveChanges();
             db.Dispose();
         }
