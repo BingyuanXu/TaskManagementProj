@@ -35,15 +35,28 @@ namespace TaskManagementProj.Models
             db.SaveChanges();
             db.Dispose();
         }
-        public static void Update(int taskId,string detail, string title, string userId, int projectId, bool isComplete)
+        public static void Update(int taskId,string detail, string title, string userId, int projectId)
         {
             TaskModel UpdatedTask = db.Tasks.Find(taskId);
             UpdatedTask.Title = title;
             UpdatedTask.Detail = detail;
             UpdatedTask.ProjectId = projectId;
             UpdatedTask.UserId = userId;
-            UpdatedTask.IsCompleted = isComplete;
             db.Entry(UpdatedTask).State = EntityState.Modified;
+            db.SaveChanges();
+            db.Dispose();
+        }
+
+        public static void Finish(int id, bool isComplete)
+        {
+            TaskModel task = db.Tasks.Find(id);
+            task.IsCompleted = isComplete;
+            Notification notification = new Notification
+            {
+                Title = "Task finished!",
+                Detail = task.Title + " has been completed!"
+            };
+            db.Notifications.Add(notification);
             db.SaveChanges();
             db.Dispose();
         }
