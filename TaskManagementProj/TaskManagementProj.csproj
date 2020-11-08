@@ -172,7 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +183,10 @@
     <Compile Include="Migrations\202011070547382_ChangNotification.cs" />
     <Compile Include="Migrations\202011070547382_ChangNotification.designer.cs">
       <DependentUpon>202011070547382_ChangNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011080106493_ChangeNotificationValue.cs" />
+    <Compile Include="Migrations\202011080106493_ChangeNotificationValue.designer.cs">
+      <DependentUpon>202011080106493_ChangeNotificationValue.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -259,7 +263,8 @@
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\User\AddNewRole.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011070547382_ChangNotification.resx">
       <DependentUpon>202011070547382_ChangNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011080106493_ChangeNotificationValue.resx">
+      <DependentUpon>202011080106493_ChangeNotificationValue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
