@@ -7,8 +7,8 @@ using TaskManagementProj.Models;
 
 namespace TaskManagementProj.Controllers
 {
-    //[Authorize]
-    //[Authorize(Roles = "Admin")]
+    [Authorize]
+    [Authorize(Roles = "User Manager")]
     public class UserController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -20,8 +20,8 @@ namespace TaskManagementProj.Controllers
 
         public ActionResult GetAllUserNames()
         {
-            var users = UserManager.GetAllUserNames();
-            return View(users);
+            ViewBag.Users = UserManager.GetAllUserNames();
+            return View();
         }
 
         public ActionResult GetAllRoles()
@@ -41,7 +41,7 @@ namespace TaskManagementProj.Controllers
             UserManager.AddNewRole(roleName);
             db.SaveChanges();
             db.Dispose();
-            return RedirectToAction("GetAllRoles");
+            return RedirectToAction("index");
         }
 
         public ActionResult AddUserToRole(string userId)
@@ -63,7 +63,7 @@ namespace TaskManagementProj.Controllers
             ViewBag.UserName = db.Users.Find(userId).UserName;
             ViewBag.roleName = new SelectList(db.Roles, "Name", "Name");
             db.Dispose();
-            return RedirectToAction("ShowAllRolesOfTheUser", new { userId });
+            return RedirectToAction("index", new { userId });
         }
     }
 }

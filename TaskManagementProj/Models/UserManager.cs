@@ -17,9 +17,9 @@ namespace TaskManagementProj.Models
         {
             return db.Roles.Select(a => a.Name).ToList();
         }
-        public static List<string> GetAllUserNames()
+        public static List<ApplicationUser> GetAllUserNames()
         {
-            return db.Users.Select(a => a.UserName).ToList();
+            return db.Users.ToList();
         }
         public static bool AddNewRole(string roleName)  // return ture means success, false means role name already exist
         {

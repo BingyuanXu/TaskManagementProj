@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TaskManagementProj.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetAllUserNames";
+}
+
+<h2>GetAllUserNames</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var user in ViewBag.Users)
+    {
+        <tr>
+            <td>
+                @user.UserName
+            <td>
+                @Html.ActionLink("ShowTheRoles", "/", new { userId = user.Id }) |
+                @Html.ActionLink("Add Role", "AddUserToRole", new { userId = user.Id }) |
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("index", "Index")
+</p>
