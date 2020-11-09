@@ -84,7 +84,7 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel)
+        public ActionResult Edit([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate")] TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {
@@ -130,6 +130,15 @@ namespace TaskManagementProj.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult TaskOverDeadline()
+        {
+            var TaskOverDeadline = from t in db.Tasks
+                                   where t.Deadline < DateTime.Now & t.CompletePercentage < 100
+                                   select t;
+            ViewBag.OverTimeTask = TaskOverDeadline.ToList();
+            return View(TaskOverDeadline);
         }
     }
 }
