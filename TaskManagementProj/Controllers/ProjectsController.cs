@@ -33,6 +33,10 @@ namespace TaskManagementProj.Controllers
             {
                 return HttpNotFound();
             }
+            var tasks = from t in db.Tasks
+                       where t.ProjectId == id
+                       select t;
+            ViewBag.Tasks = tasks;
             return View(project);
         }
 

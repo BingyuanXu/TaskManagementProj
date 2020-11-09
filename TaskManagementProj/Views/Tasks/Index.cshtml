@@ -1,10 +1,10 @@
-﻿@model IEnumerable<TaskManagementProj.Models.Project>
+﻿@model IEnumerable<TaskManagementProj.Models.TaskModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Tasks</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,13 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishedComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletePercentage)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsCompleted)
@@ -32,13 +41,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.DisplayFor(modelItem => item.Project.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishedComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletePercentage)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsCompleted)
