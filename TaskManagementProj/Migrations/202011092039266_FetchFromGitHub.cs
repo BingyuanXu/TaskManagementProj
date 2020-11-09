@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddBudgetToProject : DbMigration
+    public partial class FetchFromGitHub : DbMigration
     {
         public override void Up()
         {

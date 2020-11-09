@@ -177,13 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011090457551_AddDeadline.cs" />
-    <Compile Include="Migrations\202011090457551_AddDeadline.designer.cs">
-      <DependentUpon>202011090457551_AddDeadline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011091552423_AddBudgetToProject.cs" />
-    <Compile Include="Migrations\202011091552423_AddBudgetToProject.designer.cs">
-      <DependentUpon>202011091552423_AddBudgetToProject.cs</DependentUpon>
+    <Compile Include="Migrations\202011092039266_FetchFromGitHub.cs" />
+    <Compile Include="Migrations\202011092039266_FetchFromGitHub.designer.cs">
+      <DependentUpon>202011092039266_FetchFromGitHub.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,11 +284,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011090457551_AddDeadline.resx">
-      <DependentUpon>202011090457551_AddDeadline.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011091552423_AddBudgetToProject.resx">
-      <DependentUpon>202011091552423_AddBudgetToProject.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011092039266_FetchFromGitHub.resx">
+      <DependentUpon>202011092039266_FetchFromGitHub.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
