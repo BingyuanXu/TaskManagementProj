@@ -60,5 +60,10 @@ namespace TaskManagementProj.Models
             db.SaveChanges();
             db.Dispose();
         }
+
+        public static void OverTime()
+        {
+            
+        }
     }
 }
