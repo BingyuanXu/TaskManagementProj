@@ -1,0 +1,82 @@
+﻿@model TaskManagementProj.Models.TaskModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Task Details</h2>
+
+<div>
+    <h4>TaskModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishedComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishedComment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletePercentage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletePercentage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Project Details</h2>
 
 <div>
     <h4>Project</h4>
@@ -52,7 +52,84 @@
 
     </dl>
 </div>
+
+<h3>Task List</h3>
+<table class="table">
+    <tr>
+        <th>
+            Project
+        </th>
+        <th>
+            User.Email
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Detail
+        </th>
+        <th>
+            FinishedComment
+        </th>
+        <th>
+            CompletePercentage
+        </th>
+        <th>
+            IsCompleted
+        </th>
+        <th>
+            Creat Date
+        </th>
+        <th>
+            Deadline
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var Task in @ViewBag.Tasks)
+    {
+<tr>
+    <td>
+        @Task.Project.Title
+    </td>
+    <td>
+        @Task.UserId
+    </td>
+    <td>
+        @Task.Title
+    </td>
+    <td>
+        @Task.Detail
+    </td>
+    <td>
+        @Task.FinishedComment
+    </td>
+    <td>
+        @Task.CompletePercentage
+    </td>
+    <td>
+        @Task.IsCompleted
+    </td>
+    <td>
+        @Task.CreatDate
+    </td>
+    <td>
+        @Task.Deadline
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "../Tasks/Edit", new { id = Task.Id }) |
+        @Html.ActionLink("Details", "../Tasks/Details", new { id = Task.Id }) |
+        @Html.ActionLink("Delete", "../Tasks/Delete", new { id = Task.Id })
+    </td>
+</tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Creat a Task", "../Tasks/Create")
+</p>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+

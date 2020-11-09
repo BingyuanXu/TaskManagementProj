@@ -172,17 +172,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011080212135_Initial.cs" />
-    <Compile Include="Migrations\202011080212135_Initial.designer.cs">
-      <DependentUpon>202011080212135_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011080106493_ChangeNotificationValue.cs" />
-    <Compile Include="Migrations\202011080106493_ChangeNotificationValue.designer.cs">
-      <DependentUpon>202011080106493_ChangeNotificationValue.cs</DependentUpon>
+    <Compile Include="Migrations\202011090457551_AddDeadline.cs" />
+    <Compile Include="Migrations\202011090457551_AddDeadline.designer.cs">
+      <DependentUpon>202011090457551_AddDeadline.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -263,6 +260,12 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\AddUserToRole.cshtml" />
     <Content Include="Views\User\GetAllUserNames.cshtml" />
+    <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Tasks\Delete.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\TaskOverDeadline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,11 +284,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011080212135_Initial.resx">
-      <DependentUpon>202011080212135_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011080106493_ChangeNotificationValue.resx">
-      <DependentUpon>202011080106493_ChangeNotificationValue.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011090457551_AddDeadline.resx">
+      <DependentUpon>202011090457551_AddDeadline.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

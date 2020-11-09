@@ -1,18 +1,21 @@
-﻿@model IEnumerable<TaskManagementProj.Models.Project>
+﻿@model IEnumerable<TaskManagementProj.Models.TaskModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TaskOverDeadline";
 }
 
-<h2>Index</h2>
+<h2>TaskOverDeadline</h2>
 
 <p>
-    @Html.ActionLink("Create New Project", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -21,10 +24,19 @@
             @Html.DisplayNameFor(model => model.Detail)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.FinishedComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletePercentage)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsCompleted)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
         </th>
         <th></th>
     </tr>
@@ -32,7 +44,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.DisplayFor(modelItem => item.Project.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -41,10 +56,19 @@
             @Html.DisplayFor(modelItem => item.Detail)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.FinishedComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletePercentage)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.IsCompleted)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
