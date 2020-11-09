@@ -35,6 +35,7 @@ namespace TaskManagementProj.Controllers
             }
             var tasks = from t in db.Tasks
                        where t.ProjectId == id
+                       orderby t.CompletePercentage descending
                        select t;
             ViewBag.Tasks = tasks;
             return View(project);
