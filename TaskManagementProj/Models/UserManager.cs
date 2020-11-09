@@ -21,6 +21,10 @@ namespace TaskManagementProj.Models
         {
             return db.Users.ToList();
         }
+        public static bool CheckRoleExist(string roleName)
+        {
+            return roleManager.RoleExists(roleName);
+        }
         public static bool AddNewRole(string roleName)  // return ture means success, false means role name already exist
         {
             if(!roleManager.RoleExists(roleName))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,6 +23,7 @@ namespace TaskManagementProj.Controllers
         }
 
         // GET: Projects/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,22 +44,35 @@ namespace TaskManagementProj.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
+        [Authorize]
         // POST: Projects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate")] Project project)
         {
             if (ModelState.IsValid)
             {
                 db.Projects.Add(project);
+                project.UserId = User.Identity.GetUserId();
+                if(UserManager.CheckRoleExist("Project Manager"))
+                {
+                    UserManager.AddUserToRole(project.UserId, "Project Manager");
+                }
+                else
+                {
+                    UserManager.AddNewRole("Project Manager");
+                    UserManager.AddUserToRole(project.UserId, "Project Manager");
+                }
+                UserManager.AddNewRole("Developer");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,6 +82,7 @@ namespace TaskManagementProj.Controllers
         }
 
         // GET: Projects/Edit/5
+        [Authorize(Roles = "Project Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +101,7 @@ namespace TaskManagementProj.Controllers
         // POST: Projects/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Project Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate")] Project project)
@@ -100,6 +117,7 @@ namespace TaskManagementProj.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Project Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,8 +133,10 @@ namespace TaskManagementProj.Controllers
         }
 
         // POST: Projects/Delete/5
+        [Authorize(Roles = "Project Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Project project = db.Projects.Find(id);
