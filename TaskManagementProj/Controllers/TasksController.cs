@@ -48,7 +48,7 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate")] TaskModel taskModel)
+        public ActionResult Create([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate")] TaskModel taskModel)
+        public ActionResult Edit([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {

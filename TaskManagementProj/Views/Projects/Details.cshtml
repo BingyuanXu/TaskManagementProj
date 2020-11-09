@@ -80,6 +80,9 @@
         <th>
             Creat Date
         </th>
+        <th>
+            Deadline
+        </th>
         <th></th>
     </tr>
 
@@ -109,6 +112,9 @@
     </td>
     <td>
         @Task.CreatDate
+    </td>
+    <td>
+        @Task.Deadline
     </td>
     <td>
         @Html.ActionLink("Edit", "../Tasks/Edit", new { id = Task.Id }) |

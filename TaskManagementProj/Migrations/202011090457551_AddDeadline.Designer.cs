@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class AddDeadline : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDeadline));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011080212135_Initial"; }
+            get { return "202011090457551_AddDeadline"; }
         }
         
         string IMigrationMetadata.Source
