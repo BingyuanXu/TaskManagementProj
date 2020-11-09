@@ -137,8 +137,13 @@ namespace TaskManagementProj.Controllers
             var TaskOverDeadline = from t in db.Tasks
                                    where t.Deadline < DateTime.Now & t.CompletePercentage < 100
                                    select t;
-            ViewBag.OverTimeTask = TaskOverDeadline.ToList();
             return View(TaskOverDeadline);
+        }
+
+        public ActionResult JobFinishNotification()
+        {
+            
+            return View();
         }
     }
 }

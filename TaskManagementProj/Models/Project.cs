@@ -12,6 +12,7 @@ namespace TaskManagementProj.Models
         public string Detail { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public decimal Budget { get; set; }
         public bool IsCompleted { get; set; }
         public ICollection<TaskModel> Tasks { get; set; }
         public DateTime CreatDate { get; set; }
