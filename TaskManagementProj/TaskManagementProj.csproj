@@ -177,9 +177,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011102120178_Test.cs" />
-    <Compile Include="Migrations\202011102120178_Test.designer.cs">
-      <DependentUpon>202011102120178_Test.cs</DependentUpon>
+    <Compile Include="Migrations\202011101837361_ReCloneRepo.cs" />
+    <Compile Include="Migrations\202011101837361_ReCloneRepo.designer.cs">
+      <DependentUpon>202011101837361_ReCloneRepo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011101957004_CreateEnumOfPriority.cs" />
+    <Compile Include="Migrations\202011101957004_CreateEnumOfPriority.designer.cs">
+      <DependentUpon>202011101957004_CreateEnumOfPriority.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,8 +271,6 @@
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\TaskOverDeadline.cshtml" />
     <Content Include="Views\Tasks\MarkComplete.cshtml" />
-    <Content Include="Views\Projects\NotificationList.cshtml" />
-    <Content Include="Views\Projects\MarkProjectCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,8 +289,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011102120178_Test.resx">
-      <DependentUpon>202011102120178_Test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011101837361_ReCloneRepo.resx">
+      <DependentUpon>202011101837361_ReCloneRepo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101957004_CreateEnumOfPriority.resx">
+      <DependentUpon>202011101957004_CreateEnumOfPriority.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
