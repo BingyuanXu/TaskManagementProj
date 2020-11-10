@@ -59,7 +59,7 @@ namespace TaskManagementProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate,deadline")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace TaskManagementProj.Controllers
         [Authorize(Roles = "Project Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate,deadline")] Project project)
         {
             if (ModelState.IsValid)
             {

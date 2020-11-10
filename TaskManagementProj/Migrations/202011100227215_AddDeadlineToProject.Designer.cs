@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class AddDeadlineToProject : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDeadlineToProject));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011092158013_update"; }
+            get { return "202011100227215_AddDeadlineToProject"; }
         }
         
         string IMigrationMetadata.Source

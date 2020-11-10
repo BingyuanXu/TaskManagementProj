@@ -13,7 +13,7 @@ namespace TaskManagementProj.Models
     public static class TaskHelper
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
-        public static void Add(string detail,string title,string userId,int projectId)
+        public static void Add(string detail,string title,string userId,int projectId, DateTime deadline)
         {
             TaskModel Task = new TaskModel
             {
@@ -22,6 +22,7 @@ namespace TaskManagementProj.Models
                 ProjectId = projectId,
                 UserId = userId,
                 CreatDate = System.DateTime.Now,
+                Deadline = deadline,
                 IsCompleted = false
             };
             db.Tasks.Add(Task);

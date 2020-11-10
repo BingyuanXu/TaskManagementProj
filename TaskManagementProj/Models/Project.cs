@@ -16,6 +16,7 @@ namespace TaskManagementProj.Models
         public bool IsCompleted { get; set; }
         public ICollection<TaskModel> Tasks { get; set; }
         public DateTime CreatDate { get; set; }
+        public DateTime Deadline { get; set; }
         public Project()
         {
             CreatDate = System.DateTime.Now;

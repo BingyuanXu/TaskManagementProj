@@ -177,9 +177,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011092158013_update.cs" />
-    <Compile Include="Migrations\202011092158013_update.designer.cs">
-      <DependentUpon>202011092158013_update.cs</DependentUpon>
+    <Compile Include="Migrations\202011100207091_mergeBrach.cs" />
+    <Compile Include="Migrations\202011100207091_mergeBrach.designer.cs">
+      <DependentUpon>202011100207091_mergeBrach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011100227215_AddDeadlineToProject.cs" />
+    <Compile Include="Migrations\202011100227215_AddDeadlineToProject.designer.cs">
+      <DependentUpon>202011100227215_AddDeadlineToProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,8 +288,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011092158013_update.resx">
-      <DependentUpon>202011092158013_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011100207091_mergeBrach.resx">
+      <DependentUpon>202011100207091_mergeBrach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011100227215_AddDeadlineToProject.resx">
+      <DependentUpon>202011100227215_AddDeadlineToProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
