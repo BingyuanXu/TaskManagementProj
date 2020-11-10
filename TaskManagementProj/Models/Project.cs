@@ -17,10 +17,19 @@ namespace TaskManagementProj.Models
         public ICollection<TaskModel> Tasks { get; set; }
         public DateTime CreatDate { get; set; }
         public DateTime Deadline { get; set; }
+        public Priority Priority { get;set; }
         public Project()
         {
             CreatDate = System.DateTime.Now;
             IsCompleted = false;
         }          
+    }
+
+    public enum Priority
+    {
+        Urgent,
+        High,
+        Normal,
+        Low,
     }
 }

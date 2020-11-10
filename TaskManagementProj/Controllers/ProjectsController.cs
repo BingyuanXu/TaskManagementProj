@@ -20,7 +20,8 @@ namespace TaskManagementProj.Controllers
         {
 
             var projects = db.Projects.Include(p => p.User);
-            return View(projects.ToList());
+            var sortedProjects = projects.OrderBy(x => (int)x.Priority).ToList();
+            return View(sortedProjects);
         }
 
         // GET: Projects/Details/5
@@ -76,7 +77,7 @@ namespace TaskManagementProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate,deadline")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate,deadline,Priority")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +93,7 @@ namespace TaskManagementProj.Controllers
                     UserManager.AddUserToRole(project.UserId, "Project Manager");
                 }
                 UserManager.AddNewRole("Developer");
+                project.Priority = Priority.Low;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -123,7 +125,7 @@ namespace TaskManagementProj.Controllers
         [Authorize(Roles = "Project Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate,deadline")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,Detail,UserId,IsCompleted,CreatDate,deadline,Priority")] Project project)
         {
             if (ModelState.IsValid)
             {

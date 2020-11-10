@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class UpdatedCode : IMigrationMetadata
+    public sealed partial class CreateEnumOfPriority : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedCode));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateEnumOfPriority));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011101553179_UpdatedCode"; }
+            get { return "202011101957004_CreateEnumOfPriority"; }
         }
         
         string IMigrationMetadata.Source
