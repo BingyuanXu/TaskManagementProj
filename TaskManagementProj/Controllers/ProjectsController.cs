@@ -190,11 +190,11 @@ namespace TaskManagementProj.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Project Manager")]
-        public ActionResult MarkProjectCompleted(int id)
+        public ActionResult MarkProjectCompleted(int id, int? projectId, int? taskId)
         {
             if (ModelState.IsValid)
             {
-                ProjectHelper.Finish(id);
+                ProjectHelper.Finish(id, projectId, taskId);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -204,8 +204,9 @@ namespace TaskManagementProj.Controllers
         // [Authorize(Roles = "Project Manager")]
         public ActionResult NotificationList()
         {
-            var notifications = from n in db.Notifications
-                                select n;
+            var notifications = db.Notifications.Include(a => a.Task)
+                                                .Include(a => a.Project);
+
 
             return View(notifications);
         }

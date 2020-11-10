@@ -48,7 +48,7 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
-        public static void Finish(int id,string finishedComment)
+        public static void Finish(int id,string finishedComment,int? projectId, int? taskId)
         {
             TaskModel task = db.Tasks.Find(id);
             if(task.IsCompleted == false)
@@ -58,7 +58,9 @@ namespace TaskManagementProj.Models
                 Notification notification = new Notification
                 {
                     Title = "Task Completed!",
-                    Detail = task.Title + " is Completed!"
+                    Detail = task.Title + " is Completed!",
+                    ProjectId = projectId,
+                    TaskId = taskId
                 };
                 db.Notifications.Add(notification);
                 db.SaveChanges();
@@ -69,7 +71,7 @@ namespace TaskManagementProj.Models
         public static void OverTime()
         {
             var task = from t in db.Tasks
-                             where t.Deadline < DateTime.Now & t.CompletePercentage <100
+                             where t.Deadline < DateTime.Now & t.CompletePercentage <100 
                              orderby t.Deadline descending
                              select t;
 

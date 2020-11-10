@@ -42,14 +42,16 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
-        public static void Finish(int id)
+        public static void Finish(int id,int? projectId,int? taskId)
         {
             Project Project = db.Projects.Find(id);
             Project.IsCompleted = true;
             Notification notification = new Notification
             {
                 Title = "Project Completed!",
-                Detail = Project.Title + " is Completed!"
+                Detail = Project.Title + " is Completed!",
+                ProjectId = projectId,
+                TaskId = taskId
             };
             db.Notifications.Add(notification);
             db.SaveChanges();

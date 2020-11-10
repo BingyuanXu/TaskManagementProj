@@ -178,14 +178,16 @@ namespace TaskManagementProj.Controllers
 
         public ActionResult TaskOverDeadline()
         {
-            var TaskOverDeadline = from t in db.Tasks
-                                   where t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false
-                                   select t;
+            var TaskOverDeadline = db.Tasks.Include(a => a.User)
+                                           .Include(a => a.Project)
+                                           .Include(a=> a.User)
+                                           .Where(t => t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false);                   
             return View(TaskOverDeadline);
         }
 
         public ActionResult JobFinishNotification()
         {
+
             
             return View();
         }
