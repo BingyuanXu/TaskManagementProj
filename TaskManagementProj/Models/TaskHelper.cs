@@ -48,18 +48,22 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
-        public static void Finish(int id, bool isComplete)
+        public static void Finish(int id,string finishedComment)
         {
             TaskModel task = db.Tasks.Find(id);
-            task.IsCompleted = isComplete;
-            Notification notification = new Notification
+            if(task.IsCompleted == false)
             {
-                Title = "Completed!",
-                Detail = task.Title + "Completed!"
-            };
-            db.Notifications.Add(notification);
-            db.SaveChanges();
-            db.Dispose();
+                task.IsCompleted = true;
+                task.FinishedComment = finishedComment;
+                Notification notification = new Notification
+                {
+                    Title = "Completed!",
+                    Detail = task.Title + "Completed!"
+                };
+                db.Notifications.Add(notification);
+                db.SaveChanges();
+                db.Dispose();
+            }           
         }
 
         public static void OverTime()

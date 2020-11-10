@@ -15,6 +15,32 @@ namespace TaskManagementProj.Controllers
     public class TasksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        [Authorize(Roles = "Developer")]
+        public ActionResult MarkComplete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaskModel taskModel = db.Tasks.Find(id);
+            if (taskModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(taskModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Developer")]
+        public ActionResult MarkComplete(int id, string finishedComment)
+        {                    
+            if (ModelState.IsValid)
+            {
+                TaskHelper.Finish(id, finishedComment);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");           
+        }
         // GET: Tasks
         public ActionResult Index()
         {
@@ -47,8 +73,13 @@ namespace TaskManagementProj.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskModel taskModel = db.Tasks.Find(id);
+
+            TaskModel taskModel = db.Tasks.Include(a => a.User)
+                                          .Include(a => a.Project)
+                                          .Where(t => t.Id == id)
+                                          .FirstOrDefault();
             if (taskModel == null)
+
             {
                 return HttpNotFound();
             }
@@ -69,21 +100,15 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel, int ProjectId,string UserId)
-        {
-            
+        public ActionResult Create(string detail, string title, string userId, int projectId, DateTime deadline)
+        {      
             if (ModelState.IsValid)
             {
-                UserManager.AddUserToRole(UserId, "Developer");
-                taskModel.ProjectId = ProjectId;
-                db.Tasks.Add(taskModel);
-                db.SaveChanges();
+                TaskHelper.Add(detail, title, userId, projectId, deadline);
+                UserManager.AddUserToRole(userId, "Developer");
                 return Redirect("../Projects");
             }
-
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", taskModel.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", taskModel.UserId);
-            return View(taskModel);
+            return Redirect("../Projects");
         }
 
         // GET: Tasks/Edit/5
@@ -108,17 +133,14 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate")] TaskModel taskModel)
+        public ActionResult Edit(int taskId, string detail, string title, string userId, int projectId)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(taskModel).State = EntityState.Modified;
-                db.SaveChanges();
+                TaskHelper.Update(taskId, detail, title, userId, projectId);               
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", taskModel.ProjectId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email", taskModel.UserId);
-            return View(taskModel);
+            return RedirectToAction("Index");
         }
 
         // GET: Tasks/Delete/5
@@ -141,9 +163,7 @@ namespace TaskManagementProj.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TaskModel taskModel = db.Tasks.Find(id);
-            db.Tasks.Remove(taskModel);
-            db.SaveChanges();
+            TaskHelper.Delete(id);
             return RedirectToAction("Index");
         }
 
