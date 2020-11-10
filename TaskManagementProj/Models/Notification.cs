@@ -12,6 +12,7 @@ namespace TaskManagementProj.Models
         public string Title { get; set; }
         public string Detail { get; set; }
         public bool IsRead { get; set; } = false;
+        public DateTime CreateTime { get; set; } = DateTime.Now;
         [ForeignKey("Project")]
         public int? ProjectId { get; set; }
         public virtual Project Project { get; set; }

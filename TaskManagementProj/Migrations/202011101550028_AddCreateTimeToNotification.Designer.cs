@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class AddCreateTimeToNotification : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCreateTimeToNotification));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011100417091_update"; }
+            get { return "202011101550028_AddCreateTimeToNotification"; }
         }
         
         string IMigrationMetadata.Source

@@ -57,8 +57,8 @@ namespace TaskManagementProj.Models
                 task.FinishedComment = finishedComment;
                 Notification notification = new Notification
                 {
-                    Title = "Completed!",
-                    Detail = task.Title + "Completed!"
+                    Title = "Task Completed!",
+                    Detail = task.Title + " is Completed!"
                 };
                 db.Notifications.Add(notification);
                 db.SaveChanges();

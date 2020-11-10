@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011100417091_update.cs" />
-    <Compile Include="Migrations\202011100417091_update.designer.cs">
-      <DependentUpon>202011100417091_update.cs</DependentUpon>
+    <Compile Include="Migrations\202011101550028_AddCreateTimeToNotification.cs" />
+    <Compile Include="Migrations\202011101550028_AddCreateTimeToNotification.designer.cs">
+      <DependentUpon>202011101550028_AddCreateTimeToNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,6 +267,8 @@
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\TaskOverDeadline.cshtml" />
     <Content Include="Views\Tasks\MarkComplete.cshtml" />
+    <Content Include="Views\Projects\NotificationList.cshtml" />
+    <Content Include="Views\Projects\MarkProjectCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,8 +287,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011100417091_update.resx">
-      <DependentUpon>202011100417091_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011101550028_AddCreateTimeToNotification.resx">
+      <DependentUpon>202011101550028_AddCreateTimeToNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
