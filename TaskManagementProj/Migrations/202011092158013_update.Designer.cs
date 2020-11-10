@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FetchFromGitHub : IMigrationMetadata
+    public sealed partial class update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FetchFromGitHub));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011092039266_FetchFromGitHub"; }
+            get { return "202011092158013_update"; }
         }
         
         string IMigrationMetadata.Source

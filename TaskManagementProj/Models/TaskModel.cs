@@ -21,9 +21,10 @@ namespace TaskManagementProj.Models
         public string UserId { get; set; }
         public  ICollection<UrgentNote> UrgentNotes { get; set; }
         public DateTime CreatDate { get; set; }
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         public TaskModel()
         {
+            CompletePercentage = 0;
             IsCompleted = false;
             CreatDate = System.DateTime.Now;
         }

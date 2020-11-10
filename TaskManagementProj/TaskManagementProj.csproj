@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011092039266_FetchFromGitHub.cs" />
-    <Compile Include="Migrations\202011092039266_FetchFromGitHub.designer.cs">
-      <DependentUpon>202011092039266_FetchFromGitHub.cs</DependentUpon>
+    <Compile Include="Migrations\202011092158013_update.cs" />
+    <Compile Include="Migrations\202011092158013_update.designer.cs">
+      <DependentUpon>202011092158013_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,8 +284,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011092039266_FetchFromGitHub.resx">
-      <DependentUpon>202011092039266_FetchFromGitHub.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011092158013_update.resx">
+      <DependentUpon>202011092158013_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

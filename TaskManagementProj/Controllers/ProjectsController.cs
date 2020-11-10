@@ -37,6 +37,7 @@ namespace TaskManagementProj.Controllers
                 return HttpNotFound();
             }
             var tasks = from t in db.Tasks
+                        .Include(a => a.User)
                        where t.ProjectId == id
                        orderby t.CompletePercentage descending
                        select t;

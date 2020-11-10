@@ -60,7 +60,7 @@
             Project
         </th>
         <th>
-            User.Email
+            Developer Name
         </th>
         <th>
             Title
@@ -93,7 +93,7 @@
         @Task.Project.Title
     </td>
     <td>
-        @Task.UserId
+        @Task.User.Email
     </td>
     <td>
         @Task.Title
@@ -126,7 +126,7 @@
 </table>
 
 <p>
-    @Html.ActionLink("Creat a Task", "../Tasks/Create")
+    @Html.ActionLink("Creat a Task", "../Tasks/Create",new { ProjectId = Model.Id })
 </p>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
