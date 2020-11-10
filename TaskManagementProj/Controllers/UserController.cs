@@ -63,7 +63,7 @@ namespace TaskManagementProj.Controllers
             ViewBag.UserName = db.Users.Find(userId).UserName;
             ViewBag.roleName = new SelectList(db.Roles, "Name", "Name");
             db.Dispose();
-            return RedirectToAction("index", new { userId });
+            return RedirectToAction("index");
         }
     }
 }

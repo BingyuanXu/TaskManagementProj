@@ -30,7 +30,7 @@ namespace TaskManagementProj.Models
             db.SaveChanges();
             db.Dispose();
         }
-        public static void Update(int id, string detail, string title, string userId, bool isComplete)
+        public static void Update(int id, string detail, string title, string userId)
         {
             Project Project = db.Projects.Find(id);
             Project.Title = title;
@@ -47,12 +47,14 @@ namespace TaskManagementProj.Models
             Project.IsCompleted = isComplete;
             Notification notification = new Notification
             {
-                Title = "Project finished!",
-                Detail = Project.Title + " has been completed!"
+                Title = "Completed!",
+                Detail = Project.Title + "Completed!"
             };
             db.Notifications.Add(notification);
             db.SaveChanges();
             db.Dispose();
         }
+
+
     }
 }

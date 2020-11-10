@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
-           
+
         </p>
         <p>
             <ul>
@@ -33,3 +33,10 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@if (@ViewBag.NotificationNumber > 0)
+{
+    <script>
+    alert("you have @ViewBag.NotificationNumber notifications.")
+    </script>
+}

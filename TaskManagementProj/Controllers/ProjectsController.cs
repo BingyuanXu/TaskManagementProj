@@ -18,6 +18,7 @@ namespace TaskManagementProj.Controllers
         // GET: Projects
         public ActionResult Index()
         {
+
             var projects = db.Projects.Include(p => p.User);
             return View(projects.ToList());
         }
