@@ -179,7 +179,7 @@ namespace TaskManagementProj.Controllers
         public ActionResult TaskOverDeadline()
         {
             var TaskOverDeadline = from t in db.Tasks
-                                   where t.Deadline < DateTime.Now & t.CompletePercentage < 100
+                                   where t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false
                                    select t;
             return View(TaskOverDeadline);
         }

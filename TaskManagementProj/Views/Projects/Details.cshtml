@@ -6,10 +6,10 @@
 
 <h2>Project Details</h2>
 <p>
-    @Html.ActionLink("Show all Tasks", "Details", new { id = Model.Id, isShowAll = true });
+    <button>@Html.ActionLink("Show all Tasks", "Details", new { id = Model.Id, isShowAll = true });</button> 
 </p>
 <p>
-    @Html.ActionLink("Hide finished Tasks", "Details", new { id = Model.Id, isShowAll = false })
+    <button>@Html.ActionLink("Hide finished Tasks", "Details", new { id = Model.Id, isShowAll = false })</button> 
 </p>
 <div>
     <h4>Project</h4>

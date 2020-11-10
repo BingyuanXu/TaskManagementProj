@@ -174,5 +174,42 @@ namespace TaskManagementProj.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult MarkProjectCompleted(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = db.Projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult MarkProjectCompleted(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                ProjectHelper.Finish(id);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        // [Authorize(Roles = "Project Manager")]
+        public ActionResult NotificationList()
+        {
+            var notifications = from n in db.Notifications
+                                select n;
+
+            return View(notifications);
+        }
     }
 }
