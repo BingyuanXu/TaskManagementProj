@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TaskManagementProj.Models;
 
 namespace TaskManagementProj.Controllers
@@ -16,8 +18,26 @@ namespace TaskManagementProj.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            var taskModels = db.Tasks.Include(t => t.Project).Include(t => t.User);
-            return View(taskModels.ToList());
+            string userId = User.Identity.GetUserId();
+            bool isManager = UserManager.CheckUserInRole(userId, "Project Manager");
+            
+            if (isManager)
+            {
+                var taskModels = from a in db.Tasks
+                                   .Include(t => t.Project)
+                                   .Include(t => t.User)
+                                 select a;
+                return View(taskModels.ToList());
+            }
+            else
+            {
+                var taskModels = from a in db.Tasks
+                                .Include(t => t.Project)
+                                .Include(t => t.User)
+                                 where a.UserId == userId
+                                 select a;
+                return View(taskModels.ToList());
+            }
         }
 
         // GET: Tasks/Details/5
@@ -36,6 +56,7 @@ namespace TaskManagementProj.Controllers
         }
 
         // GET: Tasks/Create
+      //  [Authorize(Roles = "Manager")]    use later
         public ActionResult Create()
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
@@ -48,13 +69,16 @@ namespace TaskManagementProj.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProjectId,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel)
+        public ActionResult Create([Bind(Include = "Id,Title,Detail,FinishedComment,CompletePercentage,IsCompleted,UserId,CreatDate,deadline")] TaskModel taskModel, int ProjectId,string UserId)
         {
+            
             if (ModelState.IsValid)
             {
+                UserManager.AddUserToRole(UserId, "Developer");
+                taskModel.ProjectId = ProjectId;
                 db.Tasks.Add(taskModel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("../Projects");
             }
 
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", taskModel.ProjectId);
