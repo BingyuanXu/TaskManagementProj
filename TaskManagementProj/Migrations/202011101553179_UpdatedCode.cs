@@ -3,16 +3,14 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class update : DbMigration
+    public partial class UpdatedCode : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Projects", "Deadline", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Projects", "Deadline");
         }
     }
 }

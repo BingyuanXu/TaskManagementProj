@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class UpdatedCode : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedCode));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011100417091_update"; }
+            get { return "202011101553179_UpdatedCode"; }
         }
         
         string IMigrationMetadata.Source
