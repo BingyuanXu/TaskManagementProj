@@ -25,7 +25,7 @@ namespace TaskManagementProj.Controllers
 
         // GET: Projects/Details/5
         [Authorize]
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id,bool? isShowAll)
         {
             if (id == null)
             {
@@ -36,13 +36,29 @@ namespace TaskManagementProj.Controllers
             {
                 return HttpNotFound();
             }
-            var tasks = from t in db.Tasks
+            if (isShowAll == false)
+            {
+                var tasks = from t in db.Tasks
                         .Include(a => a.User)
                         .Include(a => a.Project)
-                        where t.ProjectId == id
-                       orderby t.CompletePercentage descending
-                       select t;
-            ViewBag.Tasks = tasks;
+                            where t.ProjectId == id
+                            where t.IsCompleted == false
+                            orderby t.CompletePercentage descending
+                            select t;
+                ViewBag.Tasks = tasks;
+            }
+            else
+            {
+                var tasks = from t in db.Tasks
+                       .Include(a => a.User)
+                       .Include(a => a.Project)
+                            where t.ProjectId == id                           
+                            orderby t.CompletePercentage descending
+                            select t;
+                ViewBag.Tasks = tasks;
+            }
+            
+            
             return View(project);
         }
 
