@@ -32,11 +32,11 @@ namespace TaskManagementProj.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Developer")]
-        public ActionResult MarkComplete(int id, string finishedComment)
+        public ActionResult MarkComplete(int id, string finishedComment, int? projectId, int? taskId)
         {                    
             if (ModelState.IsValid)
             {
-                TaskHelper.Finish(id, finishedComment);
+                TaskHelper.Finish(id, finishedComment, projectId, taskId);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");           
