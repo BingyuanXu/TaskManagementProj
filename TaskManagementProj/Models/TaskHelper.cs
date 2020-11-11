@@ -58,7 +58,8 @@ namespace TaskManagementProj.Models
                 Notification notification = new Notification
                 {
                     Title = "Task Completed!",
-                    Detail = task.Title + " is Completed!"
+                    Detail = task.Title + " is Completed!",              
+                    TaskId = id
                 };
                 db.Notifications.Add(notification);
                 db.SaveChanges();
@@ -69,7 +70,7 @@ namespace TaskManagementProj.Models
         public static void OverTime()
         {
             var task = from t in db.Tasks
-                             where t.Deadline < DateTime.Now & t.CompletePercentage <100
+                             where t.Deadline < DateTime.Now & t.CompletePercentage <100 
                              orderby t.Deadline descending
                              select t;
 

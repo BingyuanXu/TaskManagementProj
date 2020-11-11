@@ -7,13 +7,13 @@ namespace TaskManagementProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class MergeChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MergeChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011102342115_Initial"; }
+            get { return "202011102347572_MergeChange"; }
         }
         
         string IMigrationMetadata.Source

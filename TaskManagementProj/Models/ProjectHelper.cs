@@ -49,7 +49,8 @@ namespace TaskManagementProj.Models
             Notification notification = new Notification
             {
                 Title = "Project Completed!",
-                Detail = Project.Title + " is Completed!"
+                Detail = Project.Title + " is Completed!",
+                ProjectId = id
             };
             db.Notifications.Add(notification);
             db.SaveChanges();
