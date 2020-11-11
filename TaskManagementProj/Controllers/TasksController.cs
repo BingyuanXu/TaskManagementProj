@@ -204,12 +204,5 @@ namespace TaskManagementProj.Controllers
                                            .Where(t => t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false);                   
             return View(TaskOverDeadline);
         }
-
-        public ActionResult JobFinishNotification()
-        {
-
-            
-            return View();
-        }
     }
 }

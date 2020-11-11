@@ -214,5 +214,10 @@ namespace TaskManagementProj.Controllers
                                 .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
             return View(notifications);
         }
+
+        public ActionResult ProjectOverDeadlineWithTaskUnfinished()
+        {
+            return View();
+        }
     }
 }
