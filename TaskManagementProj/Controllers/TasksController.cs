@@ -41,6 +41,26 @@ namespace TaskManagementProj.Controllers
             }
             return RedirectToAction("Index");           
         }
+
+        [Authorize(Roles = "Developer")]
+        public ActionResult LeaveUrgentNote()
+        {           
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Developer")]
+        public ActionResult LeaveUrgentNote(int id, string detail)
+        {
+            var userId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                TaskHelper.UrgentNote(id, detail, userId);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
         // GET: Tasks
         public ActionResult Index()
         {

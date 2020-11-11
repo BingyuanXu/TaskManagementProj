@@ -67,6 +67,28 @@ namespace TaskManagementProj.Models
             }           
         }
 
+        public static void UrgentNote(int id,string detail,string userId)
+        {
+            TaskModel task = db.Tasks.Include(a => a.Project).Include(a => a.User).FirstOrDefault(a => a.Id == id);
+            Notification notification = new Notification
+            {
+                Title = task.Title + " has a Urgent Note!",
+                Detail = detail,
+                ProjectId = task.Project.Id
+
+            };
+            UrgentNote urgentNote = new UrgentNote
+            {
+                Detail = detail,
+                UserId = userId,
+                TaskId = id
+            };
+            db.Notifications.Add(notification);
+            db.UrgentNotes.Add(urgentNote);
+            db.SaveChanges();
+            db.Dispose();
+        }
+
         public static void OverTime()
         {
             var task = from t in db.Tasks
