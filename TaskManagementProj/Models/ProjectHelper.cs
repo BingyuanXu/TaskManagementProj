@@ -57,6 +57,43 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
+        public static void ProjectOvertimeWithUnfinishedTasks()
+        {
+            DateTime CurrentTime = DateTime.Now;
+            var projects = from p in db.Projects
+                           where p.Deadline < CurrentTime
+                           select p;
 
+            var projectsWithUnfinishedTasks = projects.Include(p => p.Tasks)
+                                                      .Where(t => t.IsCompleted == false);
+
+            foreach (var p in projectsWithUnfinishedTasks)
+            {
+                var notifications = from n in db.Notifications
+                                    where n.Title == "Project Overtime!"
+                                    select n;
+                bool notificationExist = false;
+                foreach (var n in notifications)
+                {
+                    if (n.ProjectId == p.Id)
+                    {
+                        notificationExist = true;
+                    }
+                }
+                //one project can only have one overtime notification
+                if (notificationExist == false)
+                {
+                    Notification notification = new Notification
+                    {
+                        Title = "Project Overtime!",
+                        Detail = p.Title + " has unfinished tasks",
+                        ProjectId = p.Id
+                    };
+                    db.Notifications.Add(notification);
+                }
+            }
+            db.SaveChanges();
+            db.Dispose();
+        }
     }
 }

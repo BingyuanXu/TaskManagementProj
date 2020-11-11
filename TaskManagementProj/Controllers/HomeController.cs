@@ -16,6 +16,7 @@ namespace TaskManagementProj.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+            ProjectHelper.ProjectOvertimeWithUnfinishedTasks();
             var userId = User.Identity.GetUserId();
             var notification = from n in db.Notifications
                                where n.IsRead == false

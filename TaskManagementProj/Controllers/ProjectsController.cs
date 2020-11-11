@@ -215,9 +215,5 @@ namespace TaskManagementProj.Controllers
             return View(notifications);
         }
 
-        public ActionResult ProjectOverDeadlineWithTaskUnfinished()
-        {
-            return View();
-        }
     }
 }
