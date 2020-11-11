@@ -41,6 +41,26 @@ namespace TaskManagementProj.Controllers
             }
             return RedirectToAction("Index");           
         }
+
+        [Authorize(Roles = "Developer")]
+        public ActionResult LeaveUrgentNote()
+        {           
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Developer")]
+        public ActionResult LeaveUrgentNote(int id, string detail)
+        {
+            var userId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                TaskHelper.UrgentNote(id, detail, userId);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
         // GET: Tasks
         public ActionResult Index()
         {
@@ -178,16 +198,11 @@ namespace TaskManagementProj.Controllers
 
         public ActionResult TaskOverDeadline()
         {
-            var TaskOverDeadline = from t in db.Tasks
-                                   where t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false
-                                   select t;
+            var TaskOverDeadline = db.Tasks.Include(a => a.User)
+                                           .Include(a => a.Project)
+                                           .Include(a=> a.User)
+                                           .Where(t => t.Deadline < DateTime.Now & t.CompletePercentage < 100 & t.IsCompleted == false);                   
             return View(TaskOverDeadline);
-        }
-
-        public ActionResult JobFinishNotification()
-        {
-            
-            return View();
         }
     }
 }

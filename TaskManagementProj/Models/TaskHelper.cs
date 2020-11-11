@@ -58,7 +58,8 @@ namespace TaskManagementProj.Models
                 Notification notification = new Notification
                 {
                     Title = "Task Completed!",
-                    Detail = task.Title + " is Completed!"
+                    Detail = task.Title + " is Completed!",              
+                    TaskId = id
                 };
                 db.Notifications.Add(notification);
                 db.SaveChanges();
@@ -66,10 +67,32 @@ namespace TaskManagementProj.Models
             }           
         }
 
+        public static void UrgentNote(int id,string detail,string userId)
+        {
+            TaskModel task = db.Tasks.Include(a => a.Project).Include(a => a.User).FirstOrDefault(a => a.Id == id);
+            Notification notification = new Notification
+            {
+                Title = task.Title + " has a Urgent Note!",
+                Detail = detail,
+                ProjectId = task.Project.Id
+
+            };
+            UrgentNote urgentNote = new UrgentNote
+            {
+                Detail = detail,
+                UserId = userId,
+                TaskId = id
+            };
+            db.Notifications.Add(notification);
+            db.UrgentNotes.Add(urgentNote);
+            db.SaveChanges();
+            db.Dispose();
+        }
+
         public static void OverTime()
         {
             var task = from t in db.Tasks
-                             where t.Deadline < DateTime.Now & t.CompletePercentage <100
+                             where t.Deadline < DateTime.Now & t.CompletePercentage <100 
                              orderby t.Deadline descending
                              select t;
 

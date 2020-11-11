@@ -65,8 +65,12 @@
     <td>
         @Html.ActionLink("Updata", "Edit", new { id = item.Id }) |
         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-        @Html.ActionLink("Mark as Completed", "MarkComplete", new { id = item.Id })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        @if (item.IsCompleted != true)
+        {
+            @Html.ActionLink("| Mark as Completed", "MarkComplete", new { id = item.Id })
+            @Html.ActionLink("| Leave an urgent Note", "LeaveUrgentNote", new { id = item.Id })
+        }      
     </td>
 </tr>
 }
