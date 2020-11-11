@@ -177,13 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011101837361_ReCloneRepo.cs" />
-    <Compile Include="Migrations\202011101837361_ReCloneRepo.designer.cs">
-      <DependentUpon>202011101837361_ReCloneRepo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011101957004_CreateEnumOfPriority.cs" />
-    <Compile Include="Migrations\202011101957004_CreateEnumOfPriority.designer.cs">
-      <DependentUpon>202011101957004_CreateEnumOfPriority.cs</DependentUpon>
+    <Compile Include="Migrations\202011102342115_Initial.cs" />
+    <Compile Include="Migrations\202011102342115_Initial.designer.cs">
+      <DependentUpon>202011102342115_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,11 +285,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011101837361_ReCloneRepo.resx">
-      <DependentUpon>202011101837361_ReCloneRepo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011101957004_CreateEnumOfPriority.resx">
-      <DependentUpon>202011101957004_CreateEnumOfPriority.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011102342115_Initial.resx">
+      <DependentUpon>202011102342115_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

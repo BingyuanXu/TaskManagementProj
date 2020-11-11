@@ -206,9 +206,12 @@ namespace TaskManagementProj.Controllers
         // [Authorize(Roles = "Project Manager")]
         public ActionResult NotificationList()
         {
-            var notifications = from n in db.Notifications
-                                select n;
-
+            var userId = User.Identity.GetUserId();
+            var notifications = db.Notifications
+                                .Include(a => a.Project.User)
+                                .Include(a => a.Task)
+                                .Include(a => a.Project)
+                                .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
             return View(notifications);
         }
     }
