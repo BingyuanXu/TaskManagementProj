@@ -192,11 +192,11 @@ namespace TaskManagementProj.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Project Manager")]
-        public ActionResult MarkProjectCompleted(int id, int? projectId, int? taskId)
+        public ActionResult MarkProjectCompleted(int id)
         {
             if (ModelState.IsValid)
             {
-                ProjectHelper.Finish(id, projectId, taskId);
+                ProjectHelper.Finish(id);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

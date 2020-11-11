@@ -42,7 +42,7 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
-        public static void Finish(int id,int? projectId,int? taskId)
+        public static void Finish(int id)
         {
             Project Project = db.Projects.Find(id);
             Project.IsCompleted = true;
@@ -50,8 +50,7 @@ namespace TaskManagementProj.Models
             {
                 Title = "Project Completed!",
                 Detail = Project.Title + " is Completed!",
-                ProjectId = projectId,
-                TaskId = taskId
+                ProjectId = id
             };
             db.Notifications.Add(notification);
             db.SaveChanges();

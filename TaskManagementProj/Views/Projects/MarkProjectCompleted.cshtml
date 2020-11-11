@@ -1,31 +1,25 @@
 ﻿@model TaskManagementProj.Models.Project
+
 @{
-    ViewBag.Title = "MarkProjectComplete";
+    ViewBag.Title = "MarkProjectCompleted";
 }
 
-<h2>Mark Project Complete</h2>
+<h2>Mark Project Completed</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Project: @Model.Title</h4>
+        <h4>Project: @Model.Title is completed!</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.IsCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBoxFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Project Complete" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

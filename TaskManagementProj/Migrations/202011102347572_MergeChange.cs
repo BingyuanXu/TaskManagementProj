@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateEnumOfPriority : DbMigration
+    public partial class MergeChange : DbMigration
     {
         public override void Up()
         {

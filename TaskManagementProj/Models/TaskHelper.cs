@@ -48,7 +48,7 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
-        public static void Finish(int id,string finishedComment,int? projectId, int? taskId)
+        public static void Finish(int id,string finishedComment)
         {
             TaskModel task = db.Tasks.Find(id);
             if(task.IsCompleted == false)
@@ -58,9 +58,8 @@ namespace TaskManagementProj.Models
                 Notification notification = new Notification
                 {
                     Title = "Task Completed!",
-                    Detail = task.Title + " is Completed!",
-                    ProjectId = projectId,
-                    TaskId = taskId
+                    Detail = task.Title + " is Completed!",              
+                    TaskId = id
                 };
                 db.Notifications.Add(notification);
                 db.SaveChanges();
