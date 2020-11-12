@@ -30,6 +30,7 @@
         <p>
             <ul>
                 <li>Project Notifications(@Html.ActionLink((string)ViewBag.NotificationNumberForUser, "../Projects/NotificationList"))</li>
+                <li>@Html.ActionLink("Project Manager Dashboard", "../Projects/ProjectManagerDashboard")</li>
             </ul>
         </p>
     </div>
@@ -43,6 +44,6 @@
 @if (@ViewBag.NotificationNumber > 0)
 {
     <script>
-    alert("you have @ViewBag.NotificationNumber notifications.")
+         alert("you have @ViewBag.NotificationNumber notifications.")
     </script>
 }

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TaskManagementProj.Models.Notification>
+
+@{
+    ViewBag.Title = "ProjectManagerDashboard";
+}
+
+<h2>Project Manager Dashboard</h2>
+
+<p>You have @ViewBag.numberOfUnReadNotes unread notes</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Task.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Task.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Mark Read", "MarkNotificationRead", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
