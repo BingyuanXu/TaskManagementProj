@@ -57,13 +57,31 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
+        public static double DayCounter(int id)
+        {
+            Project project = db.Projects.Find(id);
+            var totalDay = (project.Deadline - project.CreatDate).TotalDays;
+            return totalDay;
+        }
+        //public static int BudgetCounter(int id)
+        //{
+        //    Project project = db.Projects.Find(id);
+        //    List<string> DeveloperInProject = new List<string>();
+        //    foreach(var task in project.Tasks)
+        //    {
+        //        if(task.UserId != project.UserId && !DeveloperInProject.Contains(task.UserId))
+        //        {
+        //            DeveloperInProject.Add(task.UserId);
+        //        }
+        //    }
+        //    var totalBudget = (2000)
+        //}
         public static void ProjectOvertimeWithUnfinishedTasks()
         {
             DateTime CurrentTime = DateTime.Now;
             var projects = from p in db.Projects
                            where p.Deadline < CurrentTime
                            select p;
-
             var projectsWithUnfinishedTasks = projects.Include(p => p.Tasks)
                                                       .Where(t => t.IsCompleted == false);
 

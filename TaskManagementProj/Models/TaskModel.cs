@@ -17,8 +17,8 @@ namespace TaskManagementProj.Models
         [Range(0, 100)]
         public int CompletePercentage { get; set; }
         public bool IsCompleted { get; set; }
-        public ApplicationUser User { get; set; }
         public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
         public  ICollection<UrgentNote> UrgentNotes { get; set; }
         public DateTime CreatDate { get; set; }
         public DateTime? Deadline { get; set; }
