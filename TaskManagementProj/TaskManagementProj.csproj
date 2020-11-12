@@ -177,18 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011111709298_NewPulledCode.cs" />
-    <Compile Include="Migrations\202011111709298_NewPulledCode.designer.cs">
-      <DependentUpon>202011111709298_NewPulledCode.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011111809045_ChangeValueTypeOfBudget.cs" />
-    <Compile Include="Migrations\202011111809045_ChangeValueTypeOfBudget.designer.cs">
-      <DependentUpon>202011111809045_ChangeValueTypeOfBudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011111928159_AddSalaryToUser.cs" />
-    <Compile Include="Migrations\202011111928159_AddSalaryToUser.designer.cs">
-      <DependentUpon>202011111928159_AddSalaryToUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -276,8 +264,8 @@
     <Content Include="Views\Tasks\TaskOverDeadline.cshtml" />
     <Content Include="Views\Tasks\MarkComplete.cshtml" />
     <Content Include="Views\Projects\MarkProjectCompleted.cshtml" />
-    <Content Include="Views\Projects\AllDevelopers.cshtml" />
-    <Content Include="Views\Projects\ManagerSalary.cshtml" />
+    <Content Include="Views\Projects\NotificationList.cshtml" />
+    <Content Include="Views\Projects\MarkNotificationRead.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,17 +282,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011111709298_NewPulledCode.resx">
-      <DependentUpon>202011111709298_NewPulledCode.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011111809045_ChangeValueTypeOfBudget.resx">
-      <DependentUpon>202011111809045_ChangeValueTypeOfBudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011111928159_AddSalaryToUser.resx">
-      <DependentUpon>202011111928159_AddSalaryToUser.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
