@@ -57,6 +57,27 @@ namespace TaskManagementProj.Models
             db.Dispose();
         }
 
+        public static double DayCounter(int id)
+        {
+            Project project = db.Projects.Find(id);
+            var totalDay = (project.Deadline - project.CreatDate).TotalDays;
+            return totalDay;
+        }
+
+        //public static int BudgetCounter(int id)
+        //{
+        //    Project project = db.Projects.Find(id);
+        //    List<string> DeveloperInProject = new List<string>();
+        //    foreach(var task in project.Tasks)
+        //    {
+        //        if(task.UserId != project.UserId && !DeveloperInProject.Contains(task.UserId))
+        //        {
+        //            DeveloperInProject.Add(task.UserId);
+        //        }
+        //    }
+        //    var totalBudget = (2000)
+        //}
+
 
     }
 }

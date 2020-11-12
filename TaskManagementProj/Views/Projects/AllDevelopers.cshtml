@@ -1,0 +1,34 @@
+﻿@model IEnumerable<TaskManagementProj.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "AllDevelopers";
+}
+
+<h2>AllDevelopers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Salary/ Day
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaliySalary)
+        </td>
+        <td>
+            @Html.ActionLink("Manage Salary", "ManagerSalary", new { id = item.Id, projectId = ViewBag.projectId })
+        </td>
+    </tr>
+}
+
+</table>

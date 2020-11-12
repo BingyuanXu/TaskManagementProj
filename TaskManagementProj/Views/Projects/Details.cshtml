@@ -139,6 +139,9 @@
     @Html.ActionLink("Creat a Task", "../Tasks/Create",new { ProjectId = Model.Id })
 </p>
 <p>
+    @Html.ActionLink("Show All Developers", "AllDevelopers", new { id = Model.Id})
+</p>
+<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

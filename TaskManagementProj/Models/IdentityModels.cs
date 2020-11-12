@@ -15,6 +15,7 @@ namespace TaskManagementProj.Models
         public ICollection<Project> Projects { get; set; }
         public ICollection<UrgentNote> UrgentNotes { get; set; }
         public ICollection<Notification> Notifications { get; set; }
+        public int DaliySalary { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

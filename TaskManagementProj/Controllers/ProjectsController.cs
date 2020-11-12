@@ -77,7 +77,7 @@ namespace TaskManagementProj.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate,deadline,Priority")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Detail,IsCompleted,CreatDate,deadline,Priority,Budget")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -219,5 +219,57 @@ namespace TaskManagementProj.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult AllDevelopers(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var project= db.Projects.Include(c => c.Tasks).Include(p => p.Tasks.Select(b => b.User)).Include(a => a.User).Where(b => b.Id == id).FirstOrDefault();
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.projectId = id;
+            var allDevelopers = from n in project.Tasks
+                        select n.User;
+            return View(allDevelopers.DistinctBy(p=>p.Id).ToList());
+        }
+
+
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult ManagerSalary(int? id)
+        {
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //ApplicationUser user = db.Users.Find(id);
+            //if (user == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
+        }
+
+        // POST: Projects/Edit/5      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManagerSalary(string id, int daliySalary, int projectId)
+        {
+            ApplicationUser user = db.Users.Find(id);
+
+            if (ModelState.IsValid)
+            {
+                user.DaliySalary = daliySalary;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = projectId } );
+            }
+            return View(user);
+        }      
     }
 }

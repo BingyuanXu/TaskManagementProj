@@ -13,6 +13,17 @@ namespace TaskManagementProj.Models
     public static class TaskHelper
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            foreach (TSource element in source)
+            {
+                if (seenKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
         public static void Add(string detail,string title,string userId,int projectId, DateTime deadline)
         {
             TaskModel Task = new TaskModel
