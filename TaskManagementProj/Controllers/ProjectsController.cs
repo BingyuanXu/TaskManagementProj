@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -215,5 +216,49 @@ namespace TaskManagementProj.Controllers
             return View(notifications);
         }
 
+        public ActionResult ProjectManagerDashboard()
+        {
+            var userId = User.Identity.GetUserId();
+            var notifications = db.Notifications
+                                .Include(a => a.Project.User)
+                                .Include(a => a.Task)
+                                .Include(a => a.Project)
+                                .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
+            var unReadNotes = from n in notifications
+                              where n.IsRead == false
+                              select n;
+
+            ViewBag.numberOfUnReadNotes = unReadNotes.Count();
+            return View();
+        }
+
+        public ActionResult MarkNotificationRead(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(notification);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MarkNotificationRead(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Notification notification = db.Notifications.Find(id);
+                notification.IsRead = true;
+                db.Entry(notification).State = EntityState.Modified;
+                db.SaveChanges();
+                db.Dispose();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
