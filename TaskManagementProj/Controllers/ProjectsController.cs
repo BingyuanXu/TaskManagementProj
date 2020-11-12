@@ -236,7 +236,7 @@ namespace TaskManagementProj.Controllers
             ViewBag.projectId = id;
             var allDevelopers = from n in project.Tasks
                         select n.User;
-            return View(allDevelopers.DistinctBy(p=>p.Id).ToList());
+            return View(allDevelopers.DistinctById(p=>p.Id).ToList());
         }
 
 

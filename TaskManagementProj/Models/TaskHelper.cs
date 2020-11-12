@@ -13,7 +13,7 @@ namespace TaskManagementProj.Models
     public static class TaskHelper
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        public static IEnumerable<TSource> DistinctById<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();
             foreach (TSource element in source)

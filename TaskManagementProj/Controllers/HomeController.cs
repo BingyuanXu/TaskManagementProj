@@ -25,7 +25,7 @@ namespace TaskManagementProj.Controllers
                                 .Include(a => a.Project.User)
                                 .Include(a => a.Task)
                                 .Include(a => a.Project)
-                                .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
+                                .Where(n => n.IsRead == false && n.Project.UserId == userId || n.Task.UserId == userId);
             ViewBag.NotificationNumber = notificationNumberForUser.Count();
             ViewBag.NotificationNumberForUser = notificationNumberForUser.Count().ToString();
             return View();
