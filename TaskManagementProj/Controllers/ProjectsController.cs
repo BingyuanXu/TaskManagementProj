@@ -300,5 +300,22 @@ namespace TaskManagementProj.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult ProjectManagerDashboard()
+        {
+            var userId = User.Identity.GetUserId();
+            var notifications = db.Notifications
+                                .Include(a => a.Project.User)
+                                .Include(a => a.Task)
+                                .Include(a => a.Project)
+                                .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
+            var unReadNotes = from n in notifications
+                              where n.IsRead == false
+                              select n;
+
+            ViewBag.numberOfUnReadNotes = unReadNotes.Count();
+            return View(notifications);
+        }
     }
 }

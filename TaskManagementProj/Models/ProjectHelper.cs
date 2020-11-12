@@ -84,12 +84,12 @@ namespace TaskManagementProj.Models
                            select p;
             var projectsWithUnfinishedTasks = projects.Include(p => p.Tasks)
                                                       .Where(t => t.IsCompleted == false);
+            var notifications = from n in db.Notifications
+                                where n.Title == "Project Overtime!"
+                                select n;
 
             foreach (var p in projectsWithUnfinishedTasks)
             {
-                var notifications = from n in db.Notifications
-                                    where n.Title == "Project Overtime!"
-                                    select n;
                 bool notificationExist = false;
                 foreach (var n in notifications)
                 {
