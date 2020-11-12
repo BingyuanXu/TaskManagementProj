@@ -19,7 +19,7 @@ namespace TaskManagementProj.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-
+            ViewBag.CurrentUserId = User.Identity.GetUserId();
             var projects = db.Projects.Include(p => p.User);
             var sortedProjects = projects.OrderBy(x => (int)x.Priority).ToList();
             return View(sortedProjects);
@@ -84,6 +84,7 @@ namespace TaskManagementProj.Controllers
             {
                 db.Projects.Add(project);
                 project.UserId = User.Identity.GetUserId();
+                project.User = db.Users.Find(project.UserId);
                 if(UserManager.CheckRoleExist("Project Manager"))
                 {
                     UserManager.AddUserToRole(project.UserId, "Project Manager");
@@ -94,6 +95,7 @@ namespace TaskManagementProj.Controllers
                     UserManager.AddUserToRole(project.UserId, "Project Manager");
                 }
                 UserManager.AddNewRole("Developer");
+                project.User.DaliySalary = 1000;
                 project.Priority = Priority.Low;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -259,6 +261,7 @@ namespace TaskManagementProj.Controllers
         // POST: Projects/Edit/5      
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Project Manager")]
         public ActionResult ManagerSalary(string id, int daliySalary, int projectId)
         {
             ApplicationUser user = db.Users.Find(id);
@@ -271,6 +274,42 @@ namespace TaskManagementProj.Controllers
                 return RedirectToAction("Details", new { id = projectId } );
             }
             return View(user);
-        }      
+        }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult AllProjectsOfUser(string Id)
+        {
+            if (db.Users.Find(Id) == null || Id != User.Identity.GetUserId())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var managerProjects = db.Projects.Where(p => p.UserId == Id).ToList();
+            ViewBag.MyUserId = Id;
+            return View(managerProjects);
+        }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult CostOverBudget(string Id)
+        {
+            ViewBag.MyUserId = Id;
+            var managerProjects = db.Projects.Where(p => p.UserId == Id).ToList();
+            List<Project> resultProjects = new List<Project>();
+            foreach(var p in managerProjects)
+            {
+                var totalCost = ProjectHelper.ProjectTotalCostCounter(p.Id);
+                if(p.Budget - totalCost < 0)
+                {
+                    resultProjects.Add(p);
+                }
+            }
+            return View(resultProjects);
+        }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult CostOfFinishedProjects(string Id)
+        {
+            var result = db.Projects.Where(p => p.UserId == Id && p.IsCompleted == true).ToList();
+            return View(result);
+        }
     }
 }

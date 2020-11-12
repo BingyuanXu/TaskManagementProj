@@ -1,19 +1,22 @@
 ﻿@model IEnumerable<TaskManagementProj.Models.Project>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AllProjectsOfUser";
 }
 
-<h2>Index</h2>
+<h2>Here are all your projects</h2>
 
 <p>
-    @Html.ActionLink("Create New Project", "Create")
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("View Cost Of My Finished Projects","CostOfFinishedProjects", new { Id = ViewBag.MyUserId})
+</p>
+<p>
+    @Html.ActionLink("My Projects Cost exceeded budget", "CostOverBudget", new { Id = ViewBag.MyUserId })
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -21,10 +24,19 @@
             @Html.DisplayNameFor(model => model.Detail)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsCompleted)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishDate)
         </th>
         <th></th>
     </tr>
@@ -32,13 +44,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Budget)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsCompleted)
@@ -47,16 +59,12 @@
             @Html.DisplayFor(modelItem => item.CreatDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
-            @Html.ActionLink("Mark Completed", "MarkProjectCompleted", new { id = item.Id })
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishDate)
         </td>
     </tr>
 }
 
 </table>
-<br />
-<p>
-    @Html.ActionLink("View My Projects","AllProjectsOfUser", new { Id = ViewBag.CurrentUserId })
-</p>

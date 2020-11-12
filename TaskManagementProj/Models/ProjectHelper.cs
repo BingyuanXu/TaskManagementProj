@@ -46,6 +46,8 @@ namespace TaskManagementProj.Models
         {
             Project Project = db.Projects.Find(id);
             Project.IsCompleted = true;
+            Project.TotalCost = ProjectTotalCostCounter(id);
+            Project.FinishDate = System.DateTime.Now;
             Notification notification = new Notification
             {
                 Title = "Project Completed!",
@@ -60,22 +62,17 @@ namespace TaskManagementProj.Models
         public static double DayCounter(int id)
         {
             Project project = db.Projects.Find(id);
-            var totalDay = (project.Deadline - project.CreatDate).TotalDays;
+            double totalDay = (project.Deadline - project.CreatDate).TotalDays;
             return totalDay;
         }
-        //public static int BudgetCounter(int id)
-        //{
-        //    Project project = db.Projects.Find(id);
-        //    List<string> DeveloperInProject = new List<string>();
-        //    foreach(var task in project.Tasks)
-        //    {
-        //        if(task.UserId != project.UserId && !DeveloperInProject.Contains(task.UserId))
-        //        {
-        //            DeveloperInProject.Add(task.UserId);
-        //        }
-        //    }
-        //    var totalBudget = (2000)
-        //}
+        public static double ProjectTotalCostCounter(int id)
+        {
+            Project project = db.Projects.Include(c => c.Tasks).Include(p => p.Tasks.Select(b => b.User)).Include(a => a.User).Where(b => b.Id == id).FirstOrDefault();
+            List<ApplicationUser> allDevelopersInProject = (from n in project.Tasks
+                                                                  select n.User).ToList();
+            double TotalCost = DayCounter(id) * (project.User.DaliySalary + allDevelopersInProject.Sum(p => p.DaliySalary));
+            return TotalCost;
+        }
         public static void ProjectOvertimeWithUnfinishedTasks()
         {
             DateTime CurrentTime = DateTime.Now;

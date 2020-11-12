@@ -18,6 +18,8 @@ namespace TaskManagementProj.Models
         public DateTime CreatDate { get; set; }
         public DateTime Deadline { get; set; }
         public Priority Priority { get;set; }
+        public double TotalCost { get; set; }
+        public DateTime? FinishDate { get; set; }
         public Project()
         {
             CreatDate = System.DateTime.Now;
