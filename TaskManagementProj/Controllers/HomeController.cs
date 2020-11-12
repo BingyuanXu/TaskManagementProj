@@ -16,7 +16,7 @@ namespace TaskManagementProj.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-           ProjectHelper.ProjectOvertimeWithUnfinishedTasks();
+           //ProjectHelper.ProjectOvertimeWithUnfinishedTasks();
             var userId = User.Identity.GetUserId();
             var notification = from n in db.Notifications
                                where n.IsRead == false
@@ -25,7 +25,7 @@ namespace TaskManagementProj.Controllers
                                 .Include(a => a.Project.User)
                                 .Include(a => a.Task)
                                 .Include(a => a.Project)
-                                .Where(n => n.IsRead == false && n.Project.UserId == userId || n.Task.UserId == userId);
+                                .Where(n => n.IsRead == false && (n.Project.UserId == userId || n.Task.UserId == userId));
             ViewBag.NotificationNumber = notificationNumberForUser.Count();
             ViewBag.NotificationNumberForUser = notificationNumberForUser.Count().ToString();
             return View();

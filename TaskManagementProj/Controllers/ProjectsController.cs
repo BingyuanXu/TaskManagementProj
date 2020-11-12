@@ -270,6 +270,35 @@ namespace TaskManagementProj.Controllers
                 return RedirectToAction("Details", new { id = projectId } );
             }
             return View(user);
-        }      
+        }
+
+        public ActionResult MarkNotificationRead(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(notification);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MarkNotificationRead(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Notification notification = db.Notifications.Find(id);
+                notification.IsRead = true;
+                db.Entry(notification).State = EntityState.Modified;
+                db.SaveChanges();
+                db.Dispose();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

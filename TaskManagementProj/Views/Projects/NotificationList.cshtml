@@ -50,7 +50,9 @@
             @Html.DisplayFor(modelItem => item.CreateTime)
         </td>
         <td>
-
+            <ul>
+                <li>@Html.ActionLink("Mark Read", "MarkNotificationRead", new { id = item.Id })</li>
+            </ul>
         </td>
     </tr>
 }

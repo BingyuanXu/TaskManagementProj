@@ -269,6 +269,7 @@
     <Content Include="Views\Tasks\MarkComplete.cshtml" />
     <Content Include="Views\Projects\MarkProjectCompleted.cshtml" />
     <Content Include="Views\Projects\NotificationList.cshtml" />
+    <Content Include="Views\Projects\MarkNotificationRead.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
