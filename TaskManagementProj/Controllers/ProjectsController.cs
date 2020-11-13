@@ -104,6 +104,34 @@ namespace TaskManagementProj.Controllers
             ViewBag.UserId = new SelectList(db.Users, "Id", "Email", project.UserId);
             return View(project);
         }
+        public ActionResult MarkNotificationRead(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(notification);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MarkNotificationRead(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Notification notification = db.Notifications.Find(id);
+                notification.IsRead = true;
+                db.Entry(notification).State = EntityState.Modified;
+                db.SaveChanges();
+                db.Dispose();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
 
         // GET: Projects/Edit/5
         [Authorize(Roles = "Project Manager")]
@@ -303,6 +331,23 @@ namespace TaskManagementProj.Controllers
                 }
             }
             return View(resultProjects);
+        }
+
+        [Authorize(Roles = "Project Manager")]
+        public ActionResult ProjectManagerDashboard()
+        {
+            var userId = User.Identity.GetUserId();
+            var notifications = db.Notifications
+                                .Include(a => a.Project.User)
+                                .Include(a => a.Task)
+                                .Include(a => a.Project)
+                                .Where(n => n.Project.UserId == userId || n.Task.UserId == userId);
+            var unReadNotes = from n in notifications
+                              where n.IsRead == false
+                              select n;
+
+            ViewBag.numberOfUnReadNotes = unReadNotes.Count();
+            return View(notifications);
         }
 
         [Authorize(Roles = "Project Manager")]

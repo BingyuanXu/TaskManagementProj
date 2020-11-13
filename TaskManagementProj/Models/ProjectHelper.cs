@@ -56,7 +56,7 @@ namespace TaskManagementProj.Models
             };
             db.Notifications.Add(notification);
             db.SaveChanges();
-            db.Dispose();
+           // db.Dispose();
         }
 
         public static double DayCounter(int id)
